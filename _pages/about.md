@@ -31,11 +31,11 @@ latest_posts:
 
 Hi y'all! I'm **SangHo**.
 
-I am a visiting student at [the University of Texas at Austin](https://www.cs.utexas.edu/), advised by Professors [Georgios Pavlakos](https://geopavlakos.github.io/) and [Kristen Grauman](https://www.cs.utexas.edu/~grauman/).
+I am a visiting student at [the University of Texas at Austin](https://www.cs.utexas.edu/), advised by my wonderful Professors [Georgios Pavlakos](https://geopavlakos.github.io/), [Kristen Grauman](https://www.cs.utexas.edu/~grauman/), and my mentor [Dr. Evonne Ng](https://evonneng.github.io/).
 
 My research question is: **How can social intelligence understand beyond the projected world and interact with individuals/environment in physical space, as humans do?**
 
-<p class="research-question-casual"><span class="rq-casual-label">In simpler words:</span> How can intelligent machines read the room both verbal and nonverbally like social animals?</p>
+<p class="research-question-casual"><span class="rq-casual-label">In simpler words:</span> How can intelligent machines read the room both verbally and nonverbally like social animals?</p>
 
 Thus, my research interests lie in (1) Computer Vision and (2) Multimodal Learning, with a focus on modeling everyday human activities.
 In particular, I use modern 3D/4D approaches to model and analyze interactions to better understand human behaviors.
@@ -43,6 +43,8 @@ In particular, I use modern 3D/4D approaches to model and analyze interactions t
 I am currently a senior undergraduate in Computer Science, Artificial Intelligence, and International Relations at [Sungkyunkwan University](https://www.skku.edu/eng/).
 I am thankful to have worked with Professors [Sangmin Lee](https://sites.google.com/view/sangmin-lee/home), [Jaepil Heo](https://sites.google.com/site/jaepilheo), and [Hyojin Sung](https://codelab.snu.ac.kr/people).
 
-Outside research, I enjoy [film-making](https://youtu.be/YnsKKiO44rY?si=Ly2PCL523DVuw9U0), listening to the radio, and excavating fancy new coffee shops. I also try to do volunteering and public service as much as possible, including governmental roles in policymaking and 300+ hours of volunteering!
+Outside research, I enjoy photography and [film-making](https://youtu.be/YnsKKiO44rY?si=Ly2PCL523DVuw9U0), listening to the radio, and excavating fancy new coffee shops. I also try to do volunteering and service in the public sector as much as possible, including governmental roles in policymaking and 300+ hours of volunteering!
+
+I am proud to be the founder of SKKAI, the biggest and fastest-growing student scientific academic society at SKKU with a multidisciplinary approach to AI.
 
 You can find some of my interviews sharing personal thoughts [here](/interviews/) *(in Korean)*.
