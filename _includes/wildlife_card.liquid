@@ -1,0 +1,32 @@
+{% assign item = include.item %}
+{% assign n = include.number %}
+<figure class="wi-card">
+  <a class="wi-plate" href="{{ item.image | relative_url }}" target="_blank" rel="noopener noreferrer" aria-label="Open full plate: {{ item.common }}">
+    <img src="{{ item.image | relative_url }}" alt="Naturalist illustration of {{ item.common }} ({{ item.sci }})" loading="lazy" />
+    <span class="wi-plate-zoom" aria-hidden="true"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></span>
+  </a>
+  <figcaption class="wi-label">
+    <div class="wi-label-top">
+      <span class="wi-no">No.&nbsp;{{ n | prepend: '0' | slice: -2, 2 }}</span>
+      {% if item.type %}<span class="wi-type">{{ item.type }}</span>{% endif %}
+    </div>
+    <h3 class="wi-common">
+      {{ item.common }}{% if item.also %}<span class="wi-also"> · {{ item.also }}</span>{% endif %}
+    </h3>
+    <p class="wi-sci">{{ item.sci }}</p>
+    <span class="wi-rule" aria-hidden="true"></span>
+    <dl class="wi-meta">
+      <div class="wi-meta-row">
+        <dt>Found</dt>
+        <dd>{{ item.location }}</dd>
+      </div>
+      {% if item.meaning %}
+      <div class="wi-meta-row">
+        <dt>Meaning</dt>
+        <dd>{{ item.meaning }}</dd>
+      </div>
+      {% endif %}
+    </dl>
+    {% if item.note %}<p class="wi-note">{{ item.note }}</p>{% endif %}
+  </figcaption>
+</figure>

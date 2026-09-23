@@ -1,0 +1,304 @@
+{% assign wl = site.data.wildlife %}
+
+<section class="wildlife-illustration">
+  <header class="wi-head">
+    {% if wl.kicker %}<p class="wi-kicker">{{ wl.kicker }}</p>{% endif %}
+    <h1 class="wi-title">{{ wl.title }}</h1>
+    <div class="wi-title-flourish" aria-hidden="true"><span></span><i class="fa-solid fa-seedling"></i><span></span></div>
+    {% if wl.intro %}<p class="wi-intro">{{ wl.intro }}</p>{% endif %}
+  </header>
+
+  <div class="wi-gallery">
+    <div class="wi-col wi-col--left">
+      {% for item in wl.items %}
+        {% assign m = forloop.index0 | modulo: 2 %}
+        {% if m == 0 %}{% include wildlife_card.liquid item=item number=forloop.index %}{% endif %}
+      {% endfor %}
+    </div>
+    <div class="wi-col wi-col--right">
+      {% for item in wl.items %}
+        {% assign m = forloop.index0 | modulo: 2 %}
+        {% if m == 1 %}{% include wildlife_card.liquid item=item number=forloop.index %}{% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  {% if wl.footnote %}
+    <p class="wi-footnote"><i class="fa-solid fa-feather-pointed" aria-hidden="true"></i> {{ wl.footnote }}</p>
+  {% endif %}
+</section>
+
+<style>
+  /* ============================================================
+     Wildlife Illustration — a herbarium / field-guide scrapbook.
+     Scoped entirely under .wildlife-illustration. Renders on its
+     own warm-paper mat in both light and dark site themes so the
+     ivory plates sit seamlessly on the page.
+     ============================================================ */
+  .wildlife-illustration {
+    --wi-paper:   #f6f1e4;
+    --wi-paper-2: #efe7d4;
+    --wi-ink:     #34302a;
+    --wi-ink-soft:#6f6656;
+    --wi-green:   #5f6b4a;
+    --wi-clay:    #b0603a;
+    --wi-line:    rgba(52, 48, 42, 0.16);
+    --wi-line-2:  rgba(52, 48, 42, 0.28);
+    --wi-shadow:  22px 30px 60px -34px rgba(43, 37, 26, 0.55);
+
+    position: relative;
+    max-width: 1180px;
+    margin: 1.5rem auto 2rem;
+    padding: clamp(1.6rem, 4vw, 3.4rem) clamp(1.1rem, 4vw, 3.2rem) clamp(2rem, 4vw, 3.4rem);
+    background:
+      radial-gradient(120% 90% at 50% -10%, var(--wi-paper) 0%, var(--wi-paper-2) 100%);
+    border: 1px solid var(--wi-line);
+    border-radius: 6px;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset, var(--wi-shadow);
+    color: var(--wi-ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    overflow: hidden;
+  }
+  /* faint deckled frame line inside the mat */
+  .wildlife-illustration::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 1px solid var(--wi-line);
+    border-radius: 3px;
+    pointer-events: none;
+  }
+
+  /* ---------- header ---------- */
+  .wildlife-illustration .wi-head {
+    position: relative;
+    text-align: center;
+    max-width: 44rem;
+    margin: 0 auto clamp(2rem, 4vw, 3.2rem);
+    padding-top: 0.5rem;
+  }
+  .wildlife-illustration .wi-kicker {
+    margin: 0 0 0.9rem;
+    font-family: ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--wi-clay);
+  }
+  .wildlife-illustration .wi-title {
+    margin: 0;
+    font-size: clamp(2.3rem, 6vw, 3.9rem);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: 0.005em;
+    color: var(--wi-ink);
+  }
+  .wildlife-illustration .wi-title-flourish {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    margin: 1.05rem 0 1.3rem;
+    color: var(--wi-green);
+  }
+  .wildlife-illustration .wi-title-flourish span {
+    display: block;
+    width: clamp(2.5rem, 9vw, 4.5rem);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--wi-line-2));
+  }
+  .wildlife-illustration .wi-title-flourish span:last-child {
+    background: linear-gradient(270deg, transparent, var(--wi-line-2));
+  }
+  .wildlife-illustration .wi-title-flourish i { font-size: 0.95rem; opacity: 0.85; }
+  .wildlife-illustration .wi-intro {
+    margin: 0 auto;
+    max-width: 40rem;
+    font-size: clamp(1.02rem, 1.4vw, 1.16rem);
+    line-height: 1.75;
+    color: var(--wi-ink-soft);
+  }
+
+  /* ---------- staggered two-column gallery ---------- */
+  .wildlife-illustration .wi-gallery {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(1.5rem, 3.5vw, 3.4rem);
+  }
+  .wildlife-illustration .wi-col {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2.2rem, 4.5vw, 4rem);
+  }
+  /* the right column cascades downward — the top-left / lower-right zigzag */
+  .wildlife-illustration .wi-col--right { margin-top: clamp(2.6rem, 7vw, 6rem); }
+
+  /* ---------- specimen card ---------- */
+  .wildlife-illustration .wi-card {
+    margin: 0;
+    background: #fffdf7;
+    border: 1px solid var(--wi-line);
+    border-radius: 4px;
+    padding: 0.7rem 0.7rem 0.35rem;
+    box-shadow: 12px 18px 34px -26px rgba(43, 37, 26, 0.6);
+    transition: transform 0.45s cubic-bezier(.2,.7,.2,1), box-shadow 0.45s ease;
+    will-change: transform;
+  }
+  /* gentle scrapbook tilt, alternating per column, relaxing on hover */
+  .wildlife-illustration .wi-col--left  .wi-card { transform: rotate(-0.8deg); }
+  .wildlife-illustration .wi-col--right .wi-card { transform: rotate(0.8deg); }
+  .wildlife-illustration .wi-card:hover {
+    transform: rotate(0deg) translateY(-6px);
+    box-shadow: 18px 26px 48px -24px rgba(43, 37, 26, 0.62);
+  }
+
+  .wildlife-illustration .wi-plate {
+    position: relative;
+    display: block;
+    border-radius: 3px;
+    overflow: hidden;
+    background: var(--wi-paper);
+    box-shadow: 0 0 0 1px var(--wi-line) inset;
+  }
+  .wildlife-illustration .wi-plate img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+  .wildlife-illustration .wi-plate-zoom {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    width: 2rem;
+    height: 2rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(255, 253, 247, 0.86);
+    color: var(--wi-ink);
+    font-size: 0.72rem;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    backdrop-filter: blur(2px);
+  }
+  .wildlife-illustration .wi-plate:hover .wi-plate-zoom,
+  .wildlife-illustration .wi-plate:focus-visible .wi-plate-zoom {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* ---------- typographic specimen label ---------- */
+  .wildlife-illustration .wi-label { padding: 1rem 0.7rem 0.7rem; }
+  .wildlife-illustration .wi-label-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.55rem;
+  }
+  .wildlife-illustration .wi-no {
+    font-family: ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, Consolas, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: var(--wi-clay);
+  }
+  .wildlife-illustration .wi-type {
+    font-family: ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, Consolas, monospace;
+    font-size: 0.64rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wi-ink-soft);
+    text-align: right;
+  }
+  .wildlife-illustration .wi-common {
+    margin: 0 0 0.15rem;
+    font-size: clamp(1.32rem, 2vw, 1.6rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--wi-ink);
+  }
+  .wildlife-illustration .wi-also {
+    font-size: 0.72em;
+    font-weight: 400;
+    color: var(--wi-ink-soft);
+  }
+  .wildlife-illustration .wi-sci {
+    margin: 0 0 0.8rem;
+    font-style: italic;
+    font-size: 1.02rem;
+    color: var(--wi-green);
+  }
+  .wildlife-illustration .wi-rule {
+    display: block;
+    width: 2.4rem;
+    height: 1px;
+    margin: 0 0 0.85rem;
+    background: var(--wi-line-2);
+  }
+  .wildlife-illustration .wi-meta { margin: 0 0 0.75rem; }
+  .wildlife-illustration .wi-meta-row {
+    display: grid;
+    grid-template-columns: 4.7rem 1fr;
+    gap: 0.5rem 0.9rem;
+    padding: 0.28rem 0;
+    border-top: 1px dotted var(--wi-line);
+  }
+  .wildlife-illustration .wi-meta-row:first-child { border-top: 0; }
+  .wildlife-illustration .wi-meta dt {
+    font-family: ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, Consolas, monospace;
+    font-size: 0.64rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--wi-ink-soft);
+    padding-top: 0.12rem;
+  }
+  .wildlife-illustration .wi-meta dd {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: var(--wi-ink);
+  }
+  .wildlife-illustration .wi-note {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.62;
+    color: var(--wi-ink-soft);
+  }
+
+  /* ---------- footnote ---------- */
+  .wildlife-illustration .wi-footnote {
+    position: relative;
+    max-width: 42rem;
+    margin: clamp(2.4rem, 5vw, 3.6rem) auto 0.4rem;
+    padding-top: 1.4rem;
+    text-align: center;
+    font-size: 0.86rem;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--wi-ink-soft);
+    border-top: 1px solid var(--wi-line);
+  }
+  .wildlife-illustration .wi-footnote i { color: var(--wi-green); margin-right: 0.3rem; }
+
+  /* ---------- responsive: collapse the stagger on narrow screens ---------- */
+  @media (max-width: 780px) {
+    .wildlife-illustration .wi-gallery { flex-direction: column; gap: clamp(2rem, 8vw, 3rem); }
+    .wildlife-illustration .wi-col--right { margin-top: 0; }
+    .wildlife-illustration .wi-col--left .wi-card,
+    .wildlife-illustration .wi-col--right .wi-card { transform: rotate(0deg); }
+    .wildlife-illustration .wi-card { max-width: 30rem; margin: 0 auto; width: 100%; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wildlife-illustration .wi-card,
+    .wildlife-illustration .wi-plate-zoom { transition: none; }
+    .wildlife-illustration .wi-col--left .wi-card,
+    .wildlife-illustration .wi-col--right .wi-card { transform: none; }
+    .wildlife-illustration .wi-card:hover { transform: translateY(-4px); }
+  }
+</style>

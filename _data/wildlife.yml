@@ -1,0 +1,141 @@
+# Wildlife Illustration — field collection shown on the /art page.
+# Plates are generative-model illustrations made from photos taken around
+# Austin, Texas. Order here == the specimen numbering on the page.
+
+kicker: Field notebook · Austin, Texas
+title: Wildlife Illustration
+intro: >
+  I have always loved botanical illustration. Over a year spent in Austin,
+  Texas, I photographed the flowers, plants, and small creatures I met along
+  the way, then used generative models to turn those snapshots into a scrapbook
+  of naturalist plates. Each card pairs an illustration with where I found it
+  and the meaning traditionally attached to the bloom.
+footnote: >
+  Floriography — the “language of flowers” — is symbolic and cultural rather
+  than scientific, and its meanings vary by region and source.
+
+items:
+  - common: Indian Blanket
+    also: Firewheel
+    sci: Gaillardia pulchella
+    type: Native wildflower
+    location: Austin, Texas — riverside trail
+    meaning: Courage · resilience · warm love
+    note: >
+      A signature Texas native, its two-tone rays burning from red centers out
+      to yellow tips — a whole prairie in a single flower.
+    image: /assets/img/art/wildlife/indian-blanket.png
+
+  - common: Mexican Marigold
+    also: Aztec Marigold
+    sci: Tagetes erecta
+    type: Cultivated
+    location: Austin, Texas
+    meaning: Passion · creativity · remembrance
+    note: >
+      Ruffled, densely layered orange blooms over finely divided leaves;
+      native to Mexico and Central America and grown the world over.
+    image: /assets/img/art/wildlife/mexican-marigold.png
+
+  - common: Yellow Bells
+    also: Esperanza
+    sci: Tecoma stans
+    type: Native shrub
+    location: Austin, Texas
+    meaning: Hope · joy
+    note: >
+      Clusters of bright yellow trumpets carried above toothed leaves; utterly
+      unbothered by heat and drought.
+    image: /assets/img/art/wildlife/yellow-bells.png
+
+  - common: Red Yucca
+    sci: Hesperaloe parviflora
+    type: Native succulent
+    location: Austin, Texas
+    meaning: Strength · endurance
+    note: >
+      Long flower spikes rise from grassy clumps, opening a slow procession of
+      coral-pink tubular blooms — a hummingbird favorite.
+    image: /assets/img/art/wildlife/red-yucca.png
+
+  - common: Common Lantana
+    sci: Lantana camara
+    type: Shrub
+    location: Austin, Texas
+    meaning: Rigor · change
+    note: >
+      A single cluster mixes yellow, white, and pink and shifts color as it
+      matures — a living magnet for butterflies and bees.
+    image: /assets/img/art/wildlife/lantana.png
+
+  - common: Pride of Barbados
+    also: Peacock Flower
+    sci: Caesalpinia pulcherrima
+    type: Cultivated shrub
+    location: Austin, Texas
+    meaning: Splendor · pride
+    note: >
+      Ruffled orange-and-yellow petals with impossibly long red stamens that
+      arc outward like a drawn bow.
+    image: /assets/img/art/wildlife/pride-of-barbados.png
+
+  - common: Oleander
+    also: Pink form
+    sci: Nerium oleander
+    type: Ornamental · toxic
+    location: Austin, Texas
+    meaning: Caution · watchfulness
+    note: >
+      The same species as the white Santa Cruz form, here a cultivar in vivid
+      pink. Elegant, evergreen — and toxic in every part.
+    image: /assets/img/art/wildlife/oleander-pink.png
+
+  - common: Lanceleaf Coreopsis
+    sci: Coreopsis lanceolata
+    type: Native wildflower
+    location: Austin, Texas
+    meaning: Cheerfulness · good spirits
+    note: >
+      Sunny yellow rays around a deep brown eye, thriving along prairies,
+      roadsides, and any well-drained patch of light.
+    image: /assets/img/art/wildlife/lanceleaf-coreopsis.png
+
+  - common: American Pokeweed
+    sci: Phytolacca americana
+    type: Native perennial · toxic
+    location: Austin, Texas
+    meaning: No traditional floriography
+    note: >
+      Trailing spikes of tiny pink flowers give way to ink-dark red-purple
+      berries. A striking North American native — and best not eaten.
+    image: /assets/img/art/wildlife/pokeweed.png
+
+  - common: Bougainvillea
+    sci: Bougainvillea spp.
+    type: Tropical vine
+    location: Austin, Texas
+    meaning: Passion · welcome
+    note: >
+      The papery “petals” are really bracts wrapped around the tiny true
+      flowers — the cascading triangle-walls I kept passing all over town.
+    image: /assets/img/art/wildlife/bougainvillea.png
+
+  - common: White Leadwort
+    sci: Plumbago zeylanica
+    type: Tentative ID
+    location: Austin, Texas
+    meaning: Sometimes hope · friendship
+    note: >
+      A white, five-lobed pinwheel of a flower. Identified only tentatively —
+      the photo caught a single fallen bloom.
+    image: /assets/img/art/wildlife/white-leadwort.png
+
+  - common: White Eastern Gray Squirrel
+    also: Leucistic form
+    sci: Sciurus carolinensis
+    type: Wildlife · leucistic
+    location: Austin, Texas
+    note: >
+      White-to-cream fur with dark eyes points to leucism rather than true
+      albinism — a lucky, ghostly sighting among the oaks.
+    image: /assets/img/art/wildlife/white-squirrel.png

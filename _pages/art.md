@@ -7,5 +7,5 @@ nav_order: 2
 ---
 
 <div class="post">
-  {% include art_page.liquid %}
+  {% include wildlife_illustration.liquid %}
 </div>
