@@ -12,16 +12,31 @@
       chips.forEach(function (c) { c.classList.toggle('is-active', c.dataset.target === id); });
     }
 
-    // Instant feedback on click — don't wait for the scroll to settle.
+    var LINE = 140; // px from viewport top (site navbar + sticky tab bar)
+
+    // Instant feedback on click, and hold that state while the smooth scroll
+    // is in flight so the scroll-spy below doesn't flip it back mid-animation.
+    var lockId = null, lockUntil = 0;
     chips.forEach(function (c) {
-      c.addEventListener('click', function () { activate(c.dataset.target); });
+      c.addEventListener('click', function () {
+        lockId = c.dataset.target;
+        lockUntil = Date.now() + 1500; // safety cap if the target is never reached
+        activate(lockId);
+      });
     });
 
     // Scroll-spy: the active chapter is the last one whose top has passed a
     // reference line just below the sticky tab bar. Position-based, so it stays
     // reliable even though each chapter is very tall.
-    var LINE = 140; // px from viewport top (site navbar + sticky tab bar)
     function onScroll() {
+      if (lockId) {
+        var t = document.getElementById(lockId).getBoundingClientRect().top;
+        if (Math.abs(t - LINE) < 90 || Date.now() > lockUntil) {
+          lockId = null; // arrived (or timed out) — resume live tracking
+        } else {
+          return; // still scrolling to the clicked chapter; keep it active
+        }
+      }
       var current = sections[0].id;
       for (var i = 0; i < sections.length; i++) {
         if (sections[i].getBoundingClientRect().top - LINE <= 0) current = sections[i].id;
