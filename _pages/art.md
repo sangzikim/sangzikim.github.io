@@ -8,4 +8,5 @@ nav_order: 2
 
 <div class="post">
   {% include wildlife_illustration.liquid %}
+  {% include museum_visits.liquid %}
 </div>

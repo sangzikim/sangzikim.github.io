@@ -1,0 +1,247 @@
+{% assign mv = site.data.museums %}
+
+<section class="museum-visits">
+  <header class="mv-head">
+    {% if mv.kicker %}<p class="mv-kicker">{{ mv.kicker }}</p>{% endif %}
+    <h2 class="mv-title">{{ mv.title }}</h2>
+    <div class="mv-title-flourish" aria-hidden="true"><span></span><i class="fa-solid fa-landmark-dome"></i><span></span></div>
+    {% if mv.intro %}<p class="mv-intro">{{ mv.intro }}</p>{% endif %}
+  </header>
+
+  <ol class="mv-list">
+    {% for v in mv.visits %}
+      <li class="mv-visit">
+        <div class="mv-visit-head">
+          <span class="mv-no">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          <div class="mv-visit-titles">
+            <h3 class="mv-museum">{{ v.museum }}</h3>
+            <p class="mv-meta">
+              <span class="mv-city">{{ v.city }}</span>
+              <span class="mv-dot">·</span>
+              <span class="mv-date">{{ v.date | date: '%b %-d, %Y' }}</span>
+              {% if v.coords %}<span class="mv-dot">·</span><span class="mv-coords"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> {{ v.coords }}</span>{% endif %}
+            </p>
+            {% if v.note %}<p class="mv-note">{{ v.note }}</p>{% endif %}
+          </div>
+        </div>
+
+        <div class="mv-grid">
+          {% for p in v.photos %}
+            <figure class="mv-photo{% if p.monet %} mv-photo--monet{% endif %}">
+              <a class="mv-frame" href="{{ p.image | relative_url }}" target="_blank" rel="noopener noreferrer" aria-label="Open photo{% if p.artist %}: {{ p.artist }}{% endif %}">
+                <img src="{{ p.image | relative_url }}" alt="{% if p.artist %}{{ p.artist }} — {{ p.title }}{% else %}{{ p.caption }}{% endif %}, {{ v.museum }}" loading="lazy" />
+                {% if p.monet %}<span class="mv-monet-tag" title="Monet"><i class="fa-solid fa-star"></i> Monet</span>{% endif %}
+              </a>
+              <figcaption class="mv-cap">
+                {% if p.artist %}
+                  <span class="mv-artist">{{ p.artist }}</span>
+                  <span class="mv-work">{{ p.title }}</span>
+                {% else %}
+                  <span class="mv-place">{{ p.caption }}</span>
+                {% endif %}
+              </figcaption>
+            </figure>
+          {% endfor %}
+        </div>
+      </li>
+    {% endfor %}
+  </ol>
+
+  {% if mv.footnote %}
+    <p class="mv-footnote"><i class="fa-solid fa-feather-pointed" aria-hidden="true"></i> {{ mv.footnote }}</p>
+  {% endif %}
+</section>
+
+<style>
+  /* ============================================================
+     Museum & Gallery Visits — companion chapter to the botanical
+     field notebook. Same warm-paper palette and serif voice; laid
+     out as a stacked travel log with a masonry photo cluster per
+     visit. Scoped entirely under .museum-visits.
+     ============================================================ */
+  .museum-visits {
+    --mv-paper:   #f6f1e4;
+    --mv-paper-2: #efe7d4;
+    --mv-ink:     #34302a;
+    --mv-ink-soft:#6f6656;
+    --mv-green:   #5f6b4a;
+    --mv-clay:    #b0603a;
+    --mv-gold:    #b8912f;
+    --mv-line:    rgba(52, 48, 42, 0.16);
+    --mv-line-2:  rgba(52, 48, 42, 0.28);
+    --mv-shadow:  22px 30px 60px -34px rgba(43, 37, 26, 0.55);
+
+    position: relative;
+    max-width: 1180px;
+    margin: 2.4rem auto 2rem;
+    padding: clamp(1.6rem, 4vw, 3.4rem) clamp(1.1rem, 4vw, 3.2rem) clamp(2rem, 4vw, 3.4rem);
+    background: radial-gradient(120% 90% at 50% -10%, var(--mv-paper) 0%, var(--mv-paper-2) 100%);
+    border: 1px solid var(--mv-line);
+    border-radius: 6px;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset, var(--mv-shadow);
+    color: var(--mv-ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    overflow: hidden;
+  }
+  .museum-visits::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 1px solid var(--mv-line);
+    border-radius: 3px;
+    pointer-events: none;
+  }
+
+  /* ---------- header ---------- */
+  .museum-visits .mv-head {
+    position: relative;
+    text-align: center;
+    max-width: 46rem;
+    margin: 0 auto clamp(2rem, 4vw, 3rem);
+    padding-top: 0.5rem;
+  }
+  .museum-visits .mv-kicker {
+    margin: 0 0 0.9rem;
+    font-family: ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--mv-clay);
+  }
+  .museum-visits .mv-title {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 500;
+    line-height: 1.04;
+    color: var(--mv-ink);
+  }
+  .museum-visits .mv-title-flourish {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0.85rem; margin: 1rem 0 1.2rem; color: var(--mv-green);
+  }
+  .museum-visits .mv-title-flourish span {
+    display: block; width: clamp(2.5rem, 9vw, 4.5rem); height: 1px;
+    background: linear-gradient(90deg, transparent, var(--mv-line-2));
+  }
+  .museum-visits .mv-title-flourish span:last-child {
+    background: linear-gradient(270deg, transparent, var(--mv-line-2));
+  }
+  .museum-visits .mv-title-flourish i { font-size: 0.95rem; opacity: 0.85; }
+  .museum-visits .mv-intro {
+    margin: 0 auto; max-width: 42rem;
+    font-size: clamp(1rem, 1.4vw, 1.14rem); line-height: 1.75; color: var(--mv-ink-soft);
+  }
+
+  /* ---------- visit list ---------- */
+  .museum-visits .mv-list { list-style: none; margin: 0; padding: 0; counter-reset: none; }
+  .museum-visits .mv-visit {
+    padding: clamp(1.6rem, 3vw, 2.4rem) 0;
+    border-top: 1px solid var(--mv-line);
+  }
+  .museum-visits .mv-visit:first-child { border-top: 0; padding-top: 0; }
+
+  .museum-visits .mv-visit-head {
+    display: flex; align-items: flex-start; gap: clamp(0.9rem, 2vw, 1.5rem);
+    margin-bottom: 1.4rem;
+  }
+  .museum-visits .mv-no {
+    flex: none;
+    font-family: ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, Consolas, monospace;
+    font-size: 1.05rem; letter-spacing: 0.08em;
+    color: var(--mv-clay);
+    padding-top: 0.35rem;
+    min-width: 2.2rem;
+  }
+  .museum-visits .mv-visit-titles { min-width: 0; }
+  .museum-visits .mv-museum {
+    margin: 0 0 0.35rem;
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem); font-weight: 500; line-height: 1.12; color: var(--mv-ink);
+  }
+  .museum-visits .mv-meta {
+    margin: 0 0 0.6rem;
+    font-family: ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, Consolas, monospace;
+    font-size: 0.72rem; letter-spacing: 0.04em; color: var(--mv-ink-soft);
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;
+  }
+  .museum-visits .mv-dot { color: var(--mv-line-2); }
+  .museum-visits .mv-coords { color: var(--mv-green); white-space: nowrap; }
+  .museum-visits .mv-note {
+    margin: 0; max-width: 46rem;
+    font-size: 1rem; font-style: italic; line-height: 1.6; color: var(--mv-ink-soft);
+  }
+
+  /* ---------- masonry photo cluster ---------- */
+  .museum-visits .mv-grid {
+    columns: 3 220px;
+    column-gap: clamp(0.9rem, 1.8vw, 1.4rem);
+  }
+  .museum-visits .mv-photo {
+    break-inside: avoid;
+    margin: 0 0 clamp(0.9rem, 1.8vw, 1.4rem);
+    background: #fffdf7;
+    border: 1px solid var(--mv-line);
+    border-radius: 4px;
+    padding: 0.55rem 0.55rem 0.35rem;
+    box-shadow: 10px 14px 28px -24px rgba(43, 37, 26, 0.6);
+    transition: transform 0.4s cubic-bezier(.2,.7,.2,1), box-shadow 0.4s ease;
+  }
+  .museum-visits .mv-photo:hover {
+    transform: translateY(-5px);
+    box-shadow: 16px 22px 40px -22px rgba(43, 37, 26, 0.6);
+  }
+  .museum-visits .mv-photo--monet {
+    border-color: rgba(184, 145, 47, 0.5);
+    box-shadow: 10px 14px 28px -24px rgba(43, 37, 26, 0.6), 0 0 0 1px rgba(184,145,47,0.25) inset;
+  }
+  .museum-visits .mv-frame {
+    position: relative; display: block;
+    border-radius: 3px; overflow: hidden;
+    background: var(--mv-paper); box-shadow: 0 0 0 1px var(--mv-line) inset;
+  }
+  .museum-visits .mv-frame img { display: block; width: 100%; height: auto; }
+  .museum-visits .mv-monet-tag {
+    position: absolute; left: 0.5rem; bottom: 0.5rem;
+    display: inline-flex; align-items: center; gap: 0.28rem;
+    padding: 0.16rem 0.5rem; border-radius: 999px;
+    background: rgba(255, 253, 247, 0.92);
+    color: var(--mv-gold);
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+    box-shadow: 0 1px 4px rgba(43,37,26,0.2);
+    backdrop-filter: blur(2px);
+  }
+  .museum-visits .mv-monet-tag i { font-size: 0.58rem; }
+
+  .museum-visits .mv-cap { padding: 0.6rem 0.35rem 0.25rem; }
+  .museum-visits .mv-artist {
+    display: block;
+    font-family: ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, Consolas, monospace;
+    font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mv-clay);
+    margin-bottom: 0.15rem;
+  }
+  .museum-visits .mv-work {
+    display: block; font-style: italic; font-size: 0.95rem; line-height: 1.35; color: var(--mv-ink);
+  }
+  .museum-visits .mv-place {
+    display: block; font-size: 0.92rem; line-height: 1.4; color: var(--mv-ink-soft);
+  }
+
+  /* ---------- footnote ---------- */
+  .museum-visits .mv-footnote {
+    position: relative; max-width: 44rem; margin: clamp(2rem, 4vw, 3rem) auto 0.4rem;
+    padding-top: 1.4rem; text-align: center;
+    font-size: 0.84rem; font-style: italic; line-height: 1.6; color: var(--mv-ink-soft);
+    border-top: 1px solid var(--mv-line);
+  }
+  .museum-visits .mv-footnote i { color: var(--mv-green); margin-right: 0.3rem; }
+
+  @media (max-width: 620px) {
+    .museum-visits .mv-grid { columns: 2 140px; }
+    .museum-visits .mv-visit-head { gap: 0.7rem; }
+    .museum-visits .mv-no { min-width: 1.8rem; font-size: 0.95rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .museum-visits .mv-photo { transition: none; }
+    .museum-visits .mv-photo:hover { transform: none; }
+  }
+</style>

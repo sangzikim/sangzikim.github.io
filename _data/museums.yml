@@ -1,0 +1,184 @@
+# Museum & Gallery Visits — shown as the second chapter of the /art page.
+# A year of museum-hopping, logged like the botanical field notebook:
+# each visit carries its city, date, and GPS coordinate. Monet works are
+# flagged (`monet: true`) — a personal favorite.
+
+kicker: Travel notebook · 2025–2026
+title: Museum & Gallery Visits
+intro: >
+  The other half of this page. I love wandering museums and galleries, so
+  over the past year I kept a little logbook of the ones I visited — nine
+  collections across the States, pinned by the coordinates where each photo
+  was taken. I have a soft spot for Monet, so his paintings are marked in gold.
+footnote: >
+  Attributions are noted from memory and gallery labels; dates are the day of
+  the visit. Coordinates come from each photo's location tag.
+
+visits:
+  - museum: The Broad
+    city: Los Angeles, CA
+    date: 2025-07-31
+    coords: 34.0544, −118.2507
+    note: >
+      Contemporary and Pop under Diller Scofidio + Renfro's honeycomb “veil.”
+    photos:
+      - image: /assets/img/art_gal/museum/broad-basquiat.jpg
+        artist: Jean-Michel Basquiat
+        title: Untitled
+      - image: /assets/img/art_gal/museum/broad-contemporary.jpg
+        caption: Under “the veil” — the third-floor galleries
+
+  - museum: The Getty Center
+    city: Los Angeles, CA
+    date: 2025-08-05
+    coords: 34.0780, −118.4741
+    note: >
+      Travertine pavilions on a hill above the city — Old Masters and gardens.
+    photos:
+      - image: /assets/img/art_gal/museum/getty-batoni.jpg
+        artist: Pompeo Batoni
+        title: Portrait of John Talbot (center)
+
+  - museum: Art Institute of Chicago
+    city: Chicago, IL
+    date: 2025-10-05
+    coords: 41.8796, −87.6237
+    note: >
+      An Impressionist pilgrimage — Monet, Seurat, Van Gogh and Caillebotte
+      all in one afternoon.
+    photos:
+      - image: /assets/img/art_gal/museum/aic-monet-waterlilies.jpg
+        artist: Claude Monet
+        title: Water Lilies
+        monet: true
+      - image: /assets/img/art_gal/museum/aic-caillebotte.jpg
+        artist: Gustave Caillebotte
+        title: Paris Street; Rainy Day (1877)
+      - image: /assets/img/art_gal/museum/aic-seurat.jpg
+        artist: Georges Seurat
+        title: A Sunday on La Grande Jatte (1884–86)
+      - image: /assets/img/art_gal/museum/aic-vangogh-bedroom.jpg
+        artist: Vincent van Gogh
+        title: The Bedroom (1889)
+      - image: /assets/img/art_gal/museum/aic-vangogh-selfportrait.jpg
+        artist: Vincent van Gogh
+        title: Self-Portrait (1887)
+      - image: /assets/img/art_gal/museum/aic-staircase.jpg
+        caption: The Grand Staircase & Tiffany glass
+
+  - museum: Museum of Modern Art (MoMA)
+    city: New York, NY
+    date: 2025-12-18
+    coords: 40.7614, −73.9776
+    note: >
+      A modernist roll-call — from a starry night to a single field of blue.
+    photos:
+      - image: /assets/img/art_gal/museum/moma-vangogh-starrynight.jpg
+        artist: Vincent van Gogh
+        title: The Starry Night (1889)
+      - image: /assets/img/art_gal/museum/moma-matisse-dance.jpg
+        artist: Henri Matisse
+        title: Dance (I) (1909)
+      - image: /assets/img/art_gal/museum/moma-monet-agapanthus.jpg
+        artist: Claude Monet
+        title: Agapanthus (c. 1914–26)
+        monet: true
+      - image: /assets/img/art_gal/museum/moma-frida.jpg
+        artist: Frida Kahlo
+        title: Fulang-Chang and I (1937)
+      - image: /assets/img/art_gal/museum/moma-klein.jpg
+        artist: Yves Klein
+        title: Blue Monochrome
+      - image: /assets/img/art_gal/museum/moma-mondrian.jpg
+        artist: Piet Mondrian
+        title: Composition
+
+  - museum: Carnegie Museum of Art
+    city: Pittsburgh, PA
+    date: 2026-01-02
+    coords: 40.4436, −79.9492
+    note: >
+      Turned a corner in Pittsburgh and found a whole wall of Monet's water lilies.
+    photos:
+      - image: /assets/img/art_gal/museum/carnegie-monet-waterlilies.jpg
+        artist: Claude Monet
+        title: Water Lilies (Nymphéas)
+        monet: true
+      - image: /assets/img/art_gal/museum/carnegie-haring.jpg
+        artist: Keith Haring
+        title: Untitled (1982)
+
+  - museum: Museum of Fine Arts, Boston
+    city: Boston, MA
+    date: 2026-01-17
+    coords: 42.3394, −71.0942
+    note: >
+      The Monet motherlode — five of his paintings in a single wing — plus a
+      Sargent-domed rotunda and a lime-green tower of glass.
+    photos:
+      - image: /assets/img/art_gal/museum/mfa-monet-japonaise.jpg
+        artist: Claude Monet
+        title: La Japonaise (1876)
+        monet: true
+      - image: /assets/img/art_gal/museum/mfa-monet-waterlilies.jpg
+        artist: Claude Monet
+        title: Water Lilies
+        monet: true
+      - image: /assets/img/art_gal/museum/mfa-monet-seine.jpg
+        artist: Claude Monet
+        title: Morning on the Seine
+        monet: true
+      - image: /assets/img/art_gal/museum/mfa-gauguin.jpg
+        artist: Paul Gauguin
+        title: Where Do We Come From? … (1897–98)
+      - image: /assets/img/art_gal/museum/mfa-johnmartin.jpg
+        artist: John Martin
+        title: The Seventh Plague of Egypt (1823)
+      - image: /assets/img/art_gal/museum/mfa-rothko.jpg
+        artist: Mark Rothko
+        title: Color-field canvas
+      - image: /assets/img/art_gal/museum/mfa-chihuly.jpg
+        artist: Dale Chihuly
+        title: Lime Green Icicle Tower
+      - image: /assets/img/art_gal/museum/mfa-sargent-rotunda.jpg
+        caption: The Rotunda — John Singer Sargent murals
+      - image: /assets/img/art_gal/museum/mfa-street-photography.jpg
+        caption: “Faces in the Crowd” — street photography
+
+  - museum: Isabella Stewart Gardner Museum
+    city: Boston, MA
+    date: 2026-01-21
+    coords: 42.3381, −71.0992
+    note: >
+      Isabella's Venetian palazzo, built around a courtyard that blooms all
+      year behind Gothic glass.
+    photos:
+      - image: /assets/img/art_gal/museum/gardner-courtyard.jpg
+        caption: The glass-roofed courtyard garden
+      - image: /assets/img/art_gal/museum/gardner-interior.jpg
+        caption: The gilded palazzo galleries
+
+  - museum: Smithsonian National Museum of Natural History
+    city: Washington, D.C.
+    date: 2026-03-21
+    coords: 38.8913, −77.0261
+    note: >
+      A detour from art into deep time — the great rotunda, a totem hall, and
+      the origins of us.
+    photos:
+      - image: /assets/img/art_gal/museum/nmnh-rotunda.jpg
+        caption: The Rotunda & the Fénykövi elephant
+      - image: /assets/img/art_gal/museum/nmnh-totem.jpg
+        caption: Northwest Coast totem pole
+      - image: /assets/img/art_gal/museum/nmnh-human-origins.jpg
+        caption: Hall of Human Origins — Homo erectus
+
+  - museum: George Peabody Library
+    city: Baltimore, MD
+    date: 2026-03-23
+    coords: 39.2977, −76.6156
+    note: >
+      Not a museum, but too beautiful to skip — a cathedral made of books.
+    photos:
+      - image: /assets/img/art_gal/museum/peabody-library.jpg
+        caption: The “Cathedral of Books” atrium
