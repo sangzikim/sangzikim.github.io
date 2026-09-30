@@ -139,3 +139,17 @@ items:
       White-to-cream fur with dark eyes points to leucism rather than true
       albinism — a lucky, ghostly sighting among the oaks.
     image: /assets/img/art/wildlife/white-squirrel.png
+
+  # Self-portrait finale — rendered wide, so it spans the full width below the grid.
+  - common: Unknown Creature
+    sci: Homo sapiens
+    type: Wild animal · the collector
+    location: Austin, Texas & Seoul, South Korea
+    meaning: Curiosity · warmth
+    note: >
+      Found among the flowers — the one who gathered this whole collection.
+      Frequently spotted at the Perry-Castañeda and Samsung libraries from
+      9am to 10pm, usually surrounded by companions and leading the group;
+      enjoys baking and hopping between coffee shops.
+    image: /assets/img/art/wildlife/homo-sapiens.png
+    wide: true

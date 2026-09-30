@@ -10,18 +10,32 @@
 
   <div class="wi-gallery">
     <div class="wi-col wi-col--left">
+      {% assign grid_i = 0 %}
       {% for item in wl.items %}
-        {% assign m = forloop.index0 | modulo: 2 %}
-        {% if m == 0 %}{% include wildlife_card.liquid item=item number=forloop.index %}{% endif %}
+        {% unless item.wide %}
+          {% assign m = grid_i | modulo: 2 %}
+          {% if m == 0 %}{% include wildlife_card.liquid item=item number=forloop.index %}{% endif %}
+          {% assign grid_i = grid_i | plus: 1 %}
+        {% endunless %}
       {% endfor %}
     </div>
     <div class="wi-col wi-col--right">
+      {% assign grid_i = 0 %}
       {% for item in wl.items %}
-        {% assign m = forloop.index0 | modulo: 2 %}
-        {% if m == 1 %}{% include wildlife_card.liquid item=item number=forloop.index %}{% endif %}
+        {% unless item.wide %}
+          {% assign m = grid_i | modulo: 2 %}
+          {% if m == 1 %}{% include wildlife_card.liquid item=item number=forloop.index %}{% endif %}
+          {% assign grid_i = grid_i | plus: 1 %}
+        {% endunless %}
       {% endfor %}
     </div>
   </div>
+
+  {% for item in wl.items %}
+    {% if item.wide %}
+      <div class="wi-finale">{% include wildlife_card.liquid item=item number=forloop.index %}</div>
+    {% endif %}
+  {% endfor %}
 
   {% if wl.footnote %}
     <p class="wi-footnote"><i class="fa-solid fa-feather-pointed" aria-hidden="true"></i> {{ wl.footnote }}</p>
@@ -285,8 +299,39 @@
   }
   .wildlife-illustration .wi-footnote i { color: var(--wi-green); margin-right: 0.3rem; }
 
+  /* ---------- full-width finale card (wide illustration) ---------- */
+  .wildlife-illustration .wi-finale {
+    margin-top: clamp(2.2rem, 4.5vw, 4rem);
+  }
+  .wildlife-illustration .wi-card--wide {
+    display: grid;
+    grid-template-columns: 1.55fr 1fr;
+    align-items: stretch;
+    gap: 0;
+    transform: rotate(-0.4deg);
+    padding: 0.8rem;
+  }
+  .wildlife-illustration .wi-card--wide:hover { transform: rotate(0deg) translateY(-6px); }
+  .wildlife-illustration .wi-card--wide .wi-plate img {
+    aspect-ratio: 3 / 2;
+  }
+  .wildlife-illustration .wi-card--wide .wi-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.4rem clamp(1.2rem, 2.5vw, 2.4rem);
+  }
+  .wildlife-illustration .wi-card--wide .wi-common { font-size: clamp(1.5rem, 2.4vw, 1.95rem); }
+  .wildlife-illustration .wi-card--wide .wi-sci { font-size: 1.12rem; }
+
   /* ---------- responsive: collapse the stagger on narrow screens ---------- */
   @media (max-width: 780px) {
+    .wildlife-illustration .wi-card--wide {
+      grid-template-columns: 1fr;
+      transform: rotate(0deg);
+      max-width: 34rem;
+      margin: 0 auto;
+    }
     .wildlife-illustration .wi-gallery { flex-direction: column; gap: clamp(2rem, 8vw, 3rem); }
     .wildlife-illustration .wi-col--right { margin-top: 0; }
     .wildlife-illustration .wi-col--left .wi-card,
@@ -298,7 +343,8 @@
     .wildlife-illustration .wi-card,
     .wildlife-illustration .wi-plate-zoom { transition: none; }
     .wildlife-illustration .wi-col--left .wi-card,
-    .wildlife-illustration .wi-col--right .wi-card { transform: none; }
+    .wildlife-illustration .wi-col--right .wi-card,
+    .wildlife-illustration .wi-card--wide { transform: none; }
     .wildlife-illustration .wi-card:hover { transform: translateY(-4px); }
   }
 </style>

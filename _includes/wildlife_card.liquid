@@ -1,6 +1,6 @@
 {% assign item = include.item %}
 {% assign n = include.number %}
-<figure class="wi-card">
+<figure class="wi-card{% if item.wide %} wi-card--wide{% endif %}">
   <a class="wi-plate" href="{{ item.image | relative_url }}" target="_blank" rel="noopener noreferrer" aria-label="Open full plate: {{ item.common }}">
     <img src="{{ item.image | relative_url }}" alt="Naturalist illustration of {{ item.common }} ({{ item.sci }})" loading="lazy" />
     <span class="wi-plate-zoom" aria-hidden="true"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></span>
