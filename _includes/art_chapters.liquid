@@ -6,7 +6,7 @@
     </a>
     <a href="#chapter-museums" class="art-chip" data-target="chapter-museums">
       <i class="fa-solid fa-landmark-dome" aria-hidden="true"></i>
-      <span>Museum Visits</span>
+      <span>Galleries &amp; Museums</span>
     </a>
   </div>
 </nav>
@@ -81,24 +81,41 @@
     var sections = chips
       .map(function (c) { return document.getElementById(c.dataset.target); })
       .filter(Boolean);
-    if (!('IntersectionObserver' in window) || !sections.length) return;
+    if (!sections.length) return;
 
     function activate(id) {
       chips.forEach(function (c) { c.classList.toggle('is-active', c.dataset.target === id); });
     }
 
-    var visible = {};
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { visible[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0; });
-      // pick the section with the greatest visible area
-      var best = null, bestRatio = 0;
-      sections.forEach(function (s) {
-        var r = visible[s.id] || 0;
-        if (r > bestRatio) { bestRatio = r; best = s.id; }
-      });
-      if (best) activate(best);
-    }, { rootMargin: '-120px 0px -55% 0px', threshold: [0, 0.15, 0.35, 0.6, 1] });
+    // Instant feedback on click — don't wait for the scroll to settle.
+    chips.forEach(function (c) {
+      c.addEventListener('click', function () { activate(c.dataset.target); });
+    });
 
-    sections.forEach(function (s) { io.observe(s); });
+    // Scroll-spy: the active chapter is the last one whose top has passed a
+    // reference line just below the sticky tab bar. Position-based, so it stays
+    // reliable even though each chapter is very tall.
+    var LINE = 140; // px from viewport top (site navbar + sticky tab bar)
+    function onScroll() {
+      var current = sections[0].id;
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].getBoundingClientRect().top - LINE <= 0) current = sections[i].id;
+      }
+      // snap to the last chapter once the page is scrolled to the very bottom
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+        current = sections[sections.length - 1].id;
+      }
+      activate(current);
+    }
+
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(function () { onScroll(); ticking = false; });
+        ticking = true;
+      }
+    }, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    onScroll();
   })();
 </script>
