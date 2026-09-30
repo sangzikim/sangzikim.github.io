@@ -77,6 +77,10 @@
 
 <script>
   (function () {
+    // The chapter sections are rendered AFTER this script in the page, so wait
+    // for the full DOM before wiring up — otherwise getElementById() returns
+    // null, sections is empty, and the click handlers never attach.
+    function init() {
     var chips = Array.prototype.slice.call(document.querySelectorAll('.art-chip'));
     var sections = chips
       .map(function (c) { return document.getElementById(c.dataset.target); })
@@ -132,5 +136,12 @@
     }, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
     onScroll();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
   })();
 </script>
