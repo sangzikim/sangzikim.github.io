@@ -1,0 +1,104 @@
+<nav class="art-chapters" aria-label="Art page chapters">
+  <div class="art-chapters-inner">
+    <a href="#chapter-botanical" class="art-chip is-active" data-target="chapter-botanical">
+      <i class="fa-solid fa-seedling" aria-hidden="true"></i>
+      <span>Botanical Illustration</span>
+    </a>
+    <a href="#chapter-museums" class="art-chip" data-target="chapter-museums">
+      <i class="fa-solid fa-landmark-dome" aria-hidden="true"></i>
+      <span>Museum Visits</span>
+    </a>
+  </div>
+</nav>
+
+<style>
+  /* ============================================================
+     Art page chapter switcher — a sticky pair of paper "bookmark"
+     tabs that jump to each chapter. Matches the field-notebook
+     palette used by both chapters below.
+     ============================================================ */
+  html { scroll-behavior: smooth; }
+
+  .art-chapters {
+    position: sticky;
+    top: 56px;                 /* clears the fixed site navbar */
+    z-index: 40;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 1.6rem;
+    padding: 0.5rem 0;
+    /* fade the page through behind the floating tabs */
+    background: linear-gradient(var(--global-bg-color, #fff) 62%, transparent);
+  }
+  .art-chapters-inner {
+    display: inline-flex;
+    gap: 0.3rem;
+    padding: 0.32rem;
+    background: #f6f1e4;
+    border: 1px solid rgba(52, 48, 42, 0.16);
+    border-radius: 999px;
+    box-shadow: 0 10px 26px -16px rgba(43, 37, 26, 0.5);
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  }
+  .art-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.1rem;
+    border-radius: 999px;
+    color: #6f6656;
+    text-decoration: none;
+    font-size: 0.92rem;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .art-chip i { font-size: 0.82rem; color: #5f6b4a; transition: color 0.3s ease; }
+  .art-chip:hover { color: #34302a; background: rgba(52, 48, 42, 0.06); }
+  .art-chip.is-active {
+    background: #fffdf7;
+    color: #34302a;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.7) inset, 0 2px 8px -4px rgba(43,37,26,0.4);
+  }
+  .art-chip.is-active i { color: #b0603a; }
+
+  /* anchor targets sit clear of the site navbar + sticky tab bar */
+  #chapter-botanical, #chapter-museums { scroll-margin-top: 116px; }
+
+  @media (max-width: 520px) {
+    .art-chip { padding: 0.45rem 0.8rem; font-size: 0.82rem; gap: 0.4rem; }
+    .art-chapters { top: 56px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .art-chip { transition: none; }
+  }
+</style>
+
+<script>
+  (function () {
+    var chips = Array.prototype.slice.call(document.querySelectorAll('.art-chip'));
+    var sections = chips
+      .map(function (c) { return document.getElementById(c.dataset.target); })
+      .filter(Boolean);
+    if (!('IntersectionObserver' in window) || !sections.length) return;
+
+    function activate(id) {
+      chips.forEach(function (c) { c.classList.toggle('is-active', c.dataset.target === id); });
+    }
+
+    var visible = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { visible[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0; });
+      // pick the section with the greatest visible area
+      var best = null, bestRatio = 0;
+      sections.forEach(function (s) {
+        var r = visible[s.id] || 0;
+        if (r > bestRatio) { bestRatio = r; best = s.id; }
+      });
+      if (best) activate(best);
+    }, { rootMargin: '-120px 0px -55% 0px', threshold: [0, 0.15, 0.35, 0.6, 1] });
+
+    sections.forEach(function (s) { io.observe(s); });
+  })();
+</script>
