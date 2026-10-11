@@ -2010,6 +2010,11 @@ html.transition *:after {
 
 // Extra Markdown style (post Customization)
 .post {
+  // Home page bio text (_pages/about.md) — very slightly smaller than body copy.
+  .about-bio {
+    font-size: 0.95rem;
+  }
+
   .post-meta {
     color: var(--global-text-color-light);
     font-size: 0.875rem;
