@@ -122,7 +122,7 @@
                     {%- assign nav_href = url | relative_url -%}
                   {%- endif -%}
                   {%- assign nav_href = nav_href | replace: ' ', '%20' -%}
-                  <a class="nav-link" href="{{ nav_href }}" {% if is_download %}download{% endif %}>
+                  <a class="nav-link" href="{{ nav_href }}" {% if is_download %}target="_blank" rel="noopener noreferrer"{% endif %}>
                     {{- p.title }}
                     {% if page.url contains p.url %}
                       <span class="sr-only">(current)</span>
