@@ -45,6 +45,6 @@ I am thankful to have worked with Professors [Sangmin Lee](https://sites.google.
 
 Outside research, I enjoy photography and [film-making](https://youtu.be/YnsKKiO44rY?si=Ly2PCL523DVuw9U0), listening to the radio, and excavating fancy new coffee shops. I also try to do volunteering and service in the public sector as much as possible, including governmental roles in policymaking and 300+ hours of volunteering!
 
-I am proud to be the founder of SKKAI, the biggest and fastest-growing student scientific academic society at SKKU with a multidisciplinary approach to AI.
+I am proud to be the founder of SKKAI, the first multidisciplinary AI society at SKKU, where I have led 143 students in total and mentored 8 teams that won 9 ministerial awards and the SKKU Presidential Medal in our first year.
 
 You can find some of my interviews sharing personal thoughts [here](/interviews/) *(in Korean)*.
