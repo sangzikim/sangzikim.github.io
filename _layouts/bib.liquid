@@ -15,6 +15,17 @@
   {% assign pub_project_external = true %}
 {% endif %}
 
+{% assign pub_paper_url = null %}
+{% if entry.html %}
+  {% if entry.html contains '://' %}
+    {% assign pub_paper_url = entry.html %}
+  {% elsif entry.html contains '.pdf' %}
+    {% assign pub_paper_url = entry.html | prepend: '/assets/pdf/' | relative_url %}
+  {% else %}
+    {% assign pub_paper_url = entry.html | prepend: '/assets/html/' | relative_url %}
+  {% endif %}
+{% endif %}
+
 <div class="row">
   {% if site.enable_publication_thumbnails %}
     <div class="col col-sm-5 abbr">
@@ -65,8 +76,8 @@
                 class="preview-link-overlay"
                 aria-label="View project page for {{ entry.title | escape }}"
               ></a>
-            {% elsif entry.html %}
-              <a href="{{ entry.html }}" target="_blank" rel="noopener noreferrer" class="preview-link-overlay"></a>
+            {% elsif pub_paper_url %}
+              <a href="{{ pub_paper_url }}" target="_blank" rel="noopener noreferrer" class="preview-link-overlay"></a>
             {% endif %}
             <iframe class="preview" src="{{ entry_path | relative_url }}#toolbar=0&navpanes=0&scrollbar=0" frameborder="0" scrolling="no"></iframe>
           </div>
@@ -254,12 +265,8 @@
     {% capture periodical %}{{ entrytype }}{% if entrytype_text != "" and entryyear != "" %}, {% endif %}{{ entrymonth }}{{ entryyear }}{% endcapture %}
     <div class="periodical pub-meta">
       <span class="venue-year">{{ periodical | strip }}</span>
-      {% if entry.html %}
-        {% if entry.html contains '://' %}
-          <a href="{{ entry.html }}" class="pub-link">[paper]</a>
-        {% else %}
-          <a href="{{ entry.html | prepend: '/assets/html/' | relative_url }}" class="pub-link">[paper]</a>
-        {% endif %}
+      {% if pub_paper_url %}
+        <a href="{{ pub_paper_url }}" target="_blank" rel="noopener noreferrer" class="pub-link">[paper]</a>
       {% endif %}
       {% if entry.website %}
         <a href="{{ entry.website }}" class="pub-link">[webpage]</a>
