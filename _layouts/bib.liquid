@@ -26,6 +26,14 @@
   {% endif %}
 {% endif %}
 
+{%- comment -%} Title and thumbnail link to the project/website if set, otherwise fall back to the paper. {%- endcomment -%}
+{% assign pub_card_url = pub_project_url %}
+{% assign pub_card_external = pub_project_external %}
+{% if pub_card_url == null and pub_paper_url %}
+  {% assign pub_card_url = pub_paper_url %}
+  {% assign pub_card_external = true %}
+{% endif %}
+
 <div class="row">
   {% if site.enable_publication_thumbnails %}
     <div class="col col-sm-5 abbr">
@@ -83,13 +91,13 @@
           </div>
         {% else %}
           {% assign entry_path = entry.preview | prepend: '/assets/img/publication_preview/' %}
-          {% if pub_project_url %}
+          {% if pub_card_url %}
             <div class="preview-wrapper">
               <a
-                href="{{ pub_project_url }}"
-                {% if pub_project_external %}target="_blank" rel="noopener noreferrer"{% endif %}
+                href="{{ pub_card_url }}"
+                {% if pub_card_external %}target="_blank" rel="noopener noreferrer"{% endif %}
                 class="preview-link-overlay"
-                aria-label="View project page for {{ entry.title | escape }}"
+                aria-label="Open {{ entry.title | escape }}"
               ></a>
               {%
                 include figure.liquid
@@ -122,10 +130,10 @@
   <div id="{{ entry.key }}" class="{% if site.enable_publication_thumbnails %}col-sm-7{% else %}col-sm-10{% endif %}">
     <!-- Title -->
     <div class="title">
-      {% if pub_project_url %}
+      {% if pub_card_url %}
         <a
-          href="{{ pub_project_url }}"
-          {% if pub_project_external %}target="_blank" rel="noopener noreferrer"{% endif %}
+          href="{{ pub_card_url }}"
+          {% if pub_card_external %}target="_blank" rel="noopener noreferrer"{% endif %}
           class="pub-title-link"
         >
           {{- entry.title -}}
@@ -248,7 +256,7 @@
     {% if entry.month %}
       {% capture entrymonth %}{{ " " }}{{ entry.month | capitalize }}{% endcapture %}
     {% endif %}
-    {% if entry.year %}
+    {% if entry.year and entry.hide_year != 'true' %}
       {% capture entryyear %}{{ " " }}{{ entry.year }}{% endcapture %}
     {% endif %}
     {% if entry.location %}

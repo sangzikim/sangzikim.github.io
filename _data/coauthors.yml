@@ -14,6 +14,10 @@
   - firstname: ["Kristen"]
     url: https://www.cs.utexas.edu/~grauman/
 
+"pavlakos":
+  - firstname: ["Georgios", "G."]
+    url: https://geopavlakos.github.io/
+
 "adams":
   - firstname: ["Edwin", "E.", "E. P.", "Edwin Plimpton"]
     url: https://en.wikipedia.org/wiki/Edwin_Plimpton_Adams
